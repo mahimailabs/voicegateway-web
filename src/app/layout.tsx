@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
 import { Caveat, Kalam, JetBrains_Mono, Inter } from 'next/font/google';
 import { RootProvider } from 'fumadocs-ui/provider/next';
-import Nav from '../components/Nav';
-import SiteFooter from '../components/SiteFooter';
 import './globals.css';
 
 const caveat = Caveat({
@@ -76,11 +74,7 @@ export default function RootLayout({
       className={`${caveat.variable} ${kalam.variable} ${jb.variable} ${inter.variable}`}
     >
       <body>
-        <RootProvider>
-          <Nav />
-          {children}
-          <SiteFooter />
-        </RootProvider>
+        <RootProvider>{children}</RootProvider>
       </body>
     </html>
   );

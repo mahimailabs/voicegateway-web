@@ -7,7 +7,21 @@
   position: relative;
   max-width: 1080px;
   margin: 0 auto;
-  padding: 72px 24px 56px;
+  padding: 56px 28px 40px;
+}
+
+.vgHeroKicker {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0 0 14px;
+}
+.vgHeroKicker::before {
+  content: '· ';
+  color: var(--ink-soft);
 }
 
 .vgHeroStamp {
@@ -25,11 +39,13 @@
 }
 
 .vgHeroU {
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-decoration-thickness: 3px;
-  text-decoration-skip-ink: none;
-  text-underline-offset: 6px;
+  position: relative;
+  text-decoration: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 18' preserveAspectRatio='none'><path d='M3 13 Q 30 2 60 13 T 120 13 T 180 13 T 237 13' stroke='%23c46a3a' stroke-width='4' fill='none' stroke-linecap='round'/></svg>");
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  background-size: 240px 16px;
+  padding-bottom: 12px;
 }
 
 .vgHeroSub {

@@ -67,3 +67,15 @@ content/docs/*
 
 # fumadocs generated
 .source/
+
+# screenshot baselines (gitignored)
+ref-*.png
+current-home.png
+v2-home.png
+v3-home.png
+v4-home.png
+v4-about.png
+
+# imported wireframe references (gitignored)
+references/
+

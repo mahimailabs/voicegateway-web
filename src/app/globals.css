@@ -18,9 +18,9 @@
 }
 
 :root {
-  --vg-green: oklch(0.55 0.13 155);
+  --vg-green: oklch(0.62 0.13 155);
 
-  /* fumadocs theme overrides to match VG brand */
+  /* fumadocs theme overrides to match VG brand (light mode only) */
   --color-fd-background: var(--paper);
   --color-fd-foreground: var(--ink);
   --color-fd-muted: var(--paper-2);
@@ -34,20 +34,6 @@
   --color-fd-ring: var(--accent);
   --color-fd-popover: var(--paper);
   --color-fd-popover-foreground: var(--ink);
-}
-body.dark {
-  --vg-green: oklch(0.72 0.13 155);
-
-  --color-fd-background: var(--paper);
-  --color-fd-foreground: var(--ink);
-  --color-fd-muted: var(--paper-2);
-  --color-fd-muted-foreground: var(--ink-soft);
-  --color-fd-card: var(--paper);
-  --color-fd-border: var(--line-soft);
-  --color-fd-primary: var(--accent);
-  --color-fd-primary-foreground: var(--paper);
-  --color-fd-accent: var(--accent-soft);
-  --color-fd-accent-foreground: var(--ink);
 }
 
 a:focus-visible,

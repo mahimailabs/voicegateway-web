@@ -9,6 +9,8 @@ export default function HeroBlock() {
           never locked in
         </span>
 
+        <p className={styles.vgHeroKicker}>VoiceGateway · v0.1</p>
+
         <h1 id="vg-hero-h" className={`h-hand xxl ${styles.vgHeroTitle}`}>
           Voice agent infrastructure you actually own.
           <br />
