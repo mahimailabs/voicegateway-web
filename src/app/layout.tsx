@@ -72,6 +72,7 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${caveat.variable} ${kalam.variable} ${jb.variable} ${inter.variable}`}
+      suppressHydrationWarning
     >
       <body>
         <RootProvider theme={{ enabled: false }}>{children}</RootProvider>

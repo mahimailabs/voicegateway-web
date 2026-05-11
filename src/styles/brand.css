@@ -144,9 +144,12 @@ body {
   text-transform: uppercase;
 }
 
-.line { height: 1.5px; background: var(--ink); margin: 8px 0; border-radius: 2px; }
-.line.soft { background: var(--line-soft); height: 1.2px; }
-.line.wavy {
+/* hand-drawn rules — renamed from `.line` to `.vg-line` so it does not
+ * collide with Fumadocs syntax-highlighter line spans (`<span class="line">`).
+ */
+.vg-line { height: 1.5px; background: var(--ink); margin: 8px 0; border-radius: 2px; }
+.vg-line.soft { background: var(--line-soft); height: 1.2px; }
+.vg-line.wavy {
   height: 6px;
   background: transparent;
   background-image: radial-gradient(circle at 6px 2px, var(--ink) 1px, transparent 1.4px);
