@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { RootProvider } from 'fumadocs-ui/provider/next';
 import Nav from '../components/Nav';
 import SiteFooter from '../components/SiteFooter';
 import './globals.css';
@@ -46,9 +47,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Nav />
-        {children}
-        <SiteFooter />
+        <RootProvider>
+          <Nav />
+          {children}
+          <SiteFooter />
+        </RootProvider>
       </body>
     </html>
   );
