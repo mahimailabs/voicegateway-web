@@ -3,9 +3,12 @@
  * Source of truth: .brand/mahimai-wireframes.html (Claude-generated wireframe set).
  * Edits to this file should propagate from there, not the other way around.
  *
- * Light mode only. Two modes (sketchy default, clean via body.clean).
- * All four corners must read as the same brand.
+ * Two themes (light default, dark via body.dark) and two modes
+ * (sketchy default, clean via body.clean). All four corners must read
+ * as the same brand.
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Kalam:wght@400;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
   /* ink + paper */
@@ -25,11 +28,25 @@
   --accent-hex: #c46a3a;
   --accent-soft-hex: #f4ead8;
 
-  /* type stack (next/font CSS vars set on <html> in src/app/layout.tsx) */
-  --hand: var(--font-kalam), 'Kalam', 'Caveat', system-ui;
-  --hand-title: var(--font-caveat), 'Caveat', 'Kalam', system-ui;
-  --mono: var(--font-jb), 'JetBrains Mono', ui-monospace, Menlo, monospace;
-  --sans: var(--font-inter), 'Inter', system-ui;
+  /* type stack */
+  --hand: 'Kalam', 'Caveat', system-ui;
+  --hand-title: 'Caveat', 'Kalam', system-ui;
+  --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --sans: 'Inter', system-ui;
+}
+
+body.dark {
+  --paper: #14130f;
+  --paper-2: #1c1b17;
+  --ink: #f2efe6;
+  --ink-2: #cfcabd;
+  --ink-soft: #8e8a7d;
+  --line: #f2efe6;
+  --line-soft: #5a574f;
+  --accent: oklch(0.75 0.16 55);
+  --accent-soft: oklch(0.28 0.07 55);
+  --accent-hex: #e4a06a;
+  --accent-soft-hex: #3e2d1d;
 }
 
 /* page surface */
@@ -44,6 +61,10 @@ html, body {
 body {
   background-image: radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.05) 1px, transparent 0);
   background-size: 18px 18px;
+}
+
+body.dark {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.05) 1px, transparent 0);
 }
 
 /* ---------- Typography helpers ---------- */
@@ -144,12 +165,9 @@ body {
   text-transform: uppercase;
 }
 
-/* hand-drawn rules — renamed from `.line` to `.vg-line` so it does not
- * collide with Fumadocs syntax-highlighter line spans (`<span class="line">`).
- */
-.vg-line { height: 1.5px; background: var(--ink); margin: 8px 0; border-radius: 2px; }
-.vg-line.soft { background: var(--line-soft); height: 1.2px; }
-.vg-line.wavy {
+.line { height: 1.5px; background: var(--ink); margin: 8px 0; border-radius: 2px; }
+.line.soft { background: var(--line-soft); height: 1.2px; }
+.line.wavy {
   height: 6px;
   background: transparent;
   background-image: radial-gradient(circle at 6px 2px, var(--ink) 1px, transparent 1.4px);
