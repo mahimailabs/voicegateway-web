@@ -1,4 +1,5 @@
 import type { NextConfig } from 'next';
+import { createMDX } from 'fumadocs-mdx/next';
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare';
 
 const nextConfig: NextConfig = {
@@ -7,4 +8,6 @@ const nextConfig: NextConfig = {
 
 initOpenNextCloudflareForDev();
 
-export default nextConfig;
+const withMDX = createMDX();
+
+export default withMDX(nextConfig);

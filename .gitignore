@@ -59,7 +59,11 @@ next-env.d.ts
 .idea/
 
 # content sync target (populated by pnpm sync-docs)
-content/docs/
+content/docs/*
 !content/docs/meta.json
+!content/docs/guides
 !content/docs/guides/meta.json
 !content/docs/index.mdx
+
+# fumadocs generated
+.source/
