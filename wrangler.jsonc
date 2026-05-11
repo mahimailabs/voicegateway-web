@@ -6,9 +6,6 @@
 	],
 	"name": "voicegateway-web",
 	"main": "@astrojs/cloudflare/entrypoints/server",
-	"build": {
-		"command": "npm run build"
-	},
 	"assets": {
 		"directory": "./dist",
 		"binding": "ASSETS"
