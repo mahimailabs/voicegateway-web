@@ -12,6 +12,7 @@ const eslintConfig = defineConfig([
     'dist/**',
     'next-env.d.ts',
     '.open-next/**',
+    '.source/**',
     '.vercel/**',
     '.astro/**',
     '.wrangler/**',

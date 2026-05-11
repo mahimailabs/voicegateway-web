@@ -29,9 +29,9 @@ export default function Nav() {
         ))}
       </nav>
 
-      <a className={`btn accent ${styles.vgCta}`} href="/docs/getting-started">
+      <Link className={`btn accent ${styles.vgCta}`} href="/docs/getting-started">
         try the SDK
-      </a>
+      </Link>
     </header>
   );
 }

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './HeroBlock.module.css';
 
 export default function HeroBlock() {
@@ -21,12 +22,12 @@ export default function HeroBlock() {
         </p>
 
         <div className={styles.vgHeroCtas}>
-          <a className={`btn accent ${styles.vgHeroCtaPrimary}`} href="/docs/getting-started">
+          <Link className={`btn accent ${styles.vgHeroCtaPrimary}`} href="/docs/getting-started">
             Install in 60 seconds
-          </a>
-          <a className={`btn ${styles.vgHeroCtaGhost}`} href="/docs">
+          </Link>
+          <Link className={`btn ${styles.vgHeroCtaGhost}`} href="/docs">
             Read the docs
-          </a>
+          </Link>
         </div>
 
         <div className={styles.vgHeroMeta}>
