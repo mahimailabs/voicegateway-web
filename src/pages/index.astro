@@ -1,0 +1,165 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import HeroBlock from "../components/HeroBlock.astro";
+import PromiseCard from "../components/PromiseCard.astro";
+import CapabilityCard from "../components/CapabilityCard.astro";
+import CtaBand from "../components/CtaBand.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+
+const promises = [
+  { num: "01", title: "Your code", body: "source day one" },
+  { num: "02", title: "Your cloud", body: "your infra, your bill" },
+  { num: "03", title: "Your keys", body: "providers billed to you" },
+];
+
+const capabilities = [
+  {
+    fnum: "F1",
+    title: "Cost transparency",
+    body: "See cost per call, per token, per TTS character. To the cent, never rounded.",
+    href: "/docs/guides/cost-transparency",
+    status: "shipped",
+  },
+  {
+    fnum: "F2",
+    title: "Voice-conversation metrics",
+    body: "Latency, interruptions, dead air. The numbers your stack hides by default.",
+    href: "/docs/guides/voice-metrics",
+    status: "v0.2",
+  },
+  {
+    fnum: "F3",
+    title: "Conversation replay",
+    body: "Scrub any past call. Hear what the model heard, see what it said.",
+    href: "/docs/guides/replay",
+    status: "v0.3",
+  },
+  {
+    fnum: "F4",
+    title: "Multi-tenant attribution",
+    body: "One SDK, many tenants. Bills line up with brands. No shared keys.",
+    href: "/docs/guides/multi-tenant",
+    status: "v0.4",
+  },
+  {
+    fnum: "F5",
+    title: "Cross-modality routing",
+    body: "Voice in, chat out. Or text in, phone callback. You pick the shape.",
+    href: "/docs/guides/routing",
+    status: "v0.5",
+  },
+  {
+    fnum: "F6",
+    title: "Voice guardrails",
+    body: "Block PII, refuse off-topic, fall back when the model wanders mid-call.",
+    href: "/docs/guides/guardrails",
+    status: "v0.6",
+  },
+];
+---
+
+<Layout>
+  <Nav />
+
+  <main>
+    <HeroBlock />
+
+    <section class="vg-section vg-promises" aria-labelledby="vg-promises-h">
+      <h2 id="vg-promises-h" class="sr-only">The promise</h2>
+      <div class="vg-promises-grid">
+        {promises.map((p) => <PromiseCard num={p.num} title={p.title} body={p.body} />)}
+      </div>
+    </section>
+
+    <section class="vg-section vg-caps" aria-labelledby="vg-caps-h">
+      <div class="vg-section-head">
+        <span class="tiny-mono">§ Capabilities · v0.1</span>
+        <h2 id="vg-caps-h" class="h-hand xl vg-caps-h">
+          Six capabilities. One SDK. Shipping across v0.1 to v0.6.
+        </h2>
+      </div>
+      <div class="vg-caps-grid">
+        {capabilities.map((c) => (
+          <CapabilityCard
+            fnum={c.fnum}
+            title={c.title}
+            body={c.body}
+            href={c.href}
+            status={c.status}
+          />
+        ))}
+      </div>
+    </section>
+
+    <CtaBand />
+  </main>
+
+  <SiteFooter />
+</Layout>
+
+<style>
+  .vg-section {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 56px 24px 0;
+  }
+
+  .vg-promises {
+    padding-top: 8px;
+  }
+  .vg-promises-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .vg-section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+  .vg-caps-h {
+    max-width: 620px;
+    margin: 0;
+  }
+  .vg-caps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 880px) {
+    .vg-section {
+      padding: 40px 16px 0;
+    }
+    .vg-promises-grid {
+      grid-template-columns: 1fr;
+    }
+    .vg-caps-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+  }
+
+  @media (min-width: 881px) and (max-width: 1080px) {
+    .vg-caps-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

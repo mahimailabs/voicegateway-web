@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@import "./brand.css";
+
+/*
+ * VoiceGateway-local accent tokens.
+ * brand.css is the shared Mahimai source of truth and is not edited here:
+ * any site-specific colour layers on top through these variables.
+ */
+:root {
+  --vg-green: oklch(0.55 0.13 155);
+  --vg-green-soft: oklch(0.94 0.04 155);
+}
+
+body.dark {
+  --vg-green: oklch(0.72 0.13 155);
+  --vg-green-soft: oklch(0.28 0.07 155);
+}
+
+/* focus ring tuned for the paper surface, contrast AA on --paper */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* keep tailwind preflight from collapsing the brand body background */
+body {
+  min-height: 100dvh;
+}

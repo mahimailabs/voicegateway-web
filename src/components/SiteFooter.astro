@@ -1,0 +1,98 @@
+---
+const footerLinks = [
+  { label: "github", href: "https://github.com/mahimailabs/voicegateway" },
+  { label: "linkedin", href: "https://www.linkedin.com/in/mahimairaja/" },
+  { label: "changelog", href: "/docs/changelog" },
+];
+---
+
+<footer class="vg-footer">
+  <div class="vg-footer-inner">
+    <span class="tiny-mono vg-footer-copy">
+      © 2026 Mahimai AI · Sarnia, Ontario, Canada
+    </span>
+
+    <nav class="vg-footer-nav" aria-label="Footer">
+      {
+        footerLinks.map((item, i) => (
+          <>
+            <a href={item.href}>{item.label}</a>
+            {i < footerLinks.length - 1 ? <span class="vg-sep" aria-hidden="true">·</span> : null}
+          </>
+        ))
+      }
+    </nav>
+
+    <span class="vg-footer-status" aria-label="System status">
+      <span class="vg-dot" aria-hidden="true"></span>
+      <span class="tiny-mono">STATUS: OPERATIONAL · VERSION: 0.1.1</span>
+    </span>
+  </div>
+</footer>
+
+<style>
+  .vg-footer {
+    border-top: 1.5px dashed var(--line-soft);
+    margin-top: 56px;
+    padding: 22px 22px 32px;
+  }
+  .vg-footer-inner {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .vg-footer-nav {
+    font-family: var(--hand);
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+  }
+  .vg-footer-nav a {
+    color: var(--ink);
+    text-decoration: none;
+    transform: rotate(-0.3deg);
+    display: inline-block;
+    padding: 2px 8px;
+    border: 1.5px solid transparent;
+    border-radius: 9px 11px 8px 12px;
+    transition: border-color 120ms ease, background-color 120ms ease;
+  }
+  .vg-footer-nav a:hover,
+  .vg-footer-nav a:focus-visible {
+    border-color: var(--ink);
+    background: var(--paper-2);
+  }
+  .vg-sep {
+    color: var(--ink-soft);
+    font-family: var(--hand);
+    font-size: 14px;
+    user-select: none;
+  }
+  .vg-footer-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .vg-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--vg-green);
+    border: 1.2px solid var(--ink);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+  @media (max-width: 720px) {
+    .vg-footer-inner {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+</style>
