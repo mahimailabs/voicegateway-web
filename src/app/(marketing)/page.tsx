@@ -1,7 +1,7 @@
-import HeroBlock from '../components/HeroBlock';
-import PromiseCard from '../components/PromiseCard';
-import CapabilityCard from '../components/CapabilityCard';
-import CtaBand from '../components/CtaBand';
+import HeroBlock from '../../components/HeroBlock';
+import PromiseCard from '../../components/PromiseCard';
+import CapabilityCard from '../../components/CapabilityCard';
+import CtaBand from '../../components/CtaBand';
 import styles from './page.module.css';
 
 const promises = [
@@ -60,6 +60,8 @@ export default function HomePage() {
     <main>
       <HeroBlock />
 
+      <div className={styles.vgDottedRule} aria-hidden="true" />
+
       <section
         className={`${styles.vgSection} ${styles.vgPromises}`}
         aria-labelledby="vg-promises-h"
@@ -74,11 +76,15 @@ export default function HomePage() {
         </div>
       </section>
 
+      <div className={styles.vgDottedRule} aria-hidden="true" />
+
       <section className={styles.vgSection} aria-labelledby="vg-caps-h">
         <div className={styles.vgSectionHead}>
-          <span className="tiny-mono">§ Capabilities · v0.1</span>
-          <h2 id="vg-caps-h" className={`h-hand xl ${styles.vgCapsH}`}>
-            Six capabilities. One SDK. Shipping across v0.1 to v0.6.
+          <span className={styles.vgCapsKicker}>Capabilities · v0.1</span>
+          <h2 id="vg-caps-h" className={`h-hand ${styles.vgCapsH}`}>
+            Six capabilities. One SDK.
+            <br />
+            Shipping across v0.1 to v0.6.
           </h2>
         </div>
         <div className={styles.vgCapsGrid}>
