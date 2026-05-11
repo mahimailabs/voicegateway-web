@@ -15,7 +15,9 @@
     "deploy": "pnpm build && pnpm build:cf && opennextjs-cloudflare deploy",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "sync-docs": "tsx scripts/sync-docs.ts",
+    "prebuild": "pnpm sync-docs || echo 'sync skipped'"
   },
   "dependencies": {
     "fumadocs-core": "16.8.10",
@@ -35,6 +37,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5",
     "wrangler": "^4.90.0"
   }
