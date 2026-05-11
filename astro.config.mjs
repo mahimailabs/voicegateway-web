@@ -16,10 +16,16 @@ export default defineConfig({
       sidebar: [
         {
           label: "Getting started",
-          autogenerate: { directory: "docs/getting-started" },
+          items: [{ autogenerate: { directory: "docs/getting-started" } }],
         },
-        { label: "Guides", autogenerate: { directory: "docs/guides" } },
-        { label: "API reference", autogenerate: { directory: "docs/api" } },
+        {
+          label: "Guides",
+          items: [{ autogenerate: { directory: "docs/guides" } }],
+        },
+        {
+          label: "API reference",
+          items: [{ autogenerate: { directory: "docs/api" } }],
+        },
         { label: "Changelog", link: "/docs/changelog" },
       ],
     }),
