@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-The marketing + documentation site for **VoiceGateway** (deployed at https://voicegateway.mahimai.ca). It is an Astro 6 site with the Starlight docs integration, styled with Tailwind 4, served from Cloudflare Workers via the `@astrojs/cloudflare` adapter.
+The marketing + public documentation site for **VoiceGateway** (deployed at https://voicegateway.mahimai.ca). Next.js 15+ (App Router) + Tailwind 4 + Fumadocs, served from Cloudflare Workers via the `@opennextjs/cloudflare` adapter (`@cloudflare/next-on-pages` is deprecated and does not support Next 16). The previous Astro source lives under `legacy/` and will be removed in a follow-up commit on main after a one-week soak post-merge. CLAUDE.md gets a full rewrite in web-v0.2.0 T31.
 
 The repo was just bootstrapped from `npm create astro@latest --template basics` and then had Starlight, Tailwind, and the Cloudflare adapter layered on. The default Astro welcome page (`src/pages/index.astro` + `src/components/Welcome.astro` + `src/layouts/Layout.astro`) is still in place and will be replaced as real content lands. The Starlight docs content directory (`src/content/docs/`) does not exist yet, so the `autogenerate` sidebar entries in `astro.config.mjs` (getting-started, guides, api) are currently dangling: building docs pages means creating that directory tree first.
 

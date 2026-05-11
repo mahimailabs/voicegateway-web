@@ -18,6 +18,9 @@ node_modules/
 /out/
 .vercel
 
+# open-next cloudflare bundle
+.open-next/
+
 # legacy astro build output
 dist/
 .astro/
