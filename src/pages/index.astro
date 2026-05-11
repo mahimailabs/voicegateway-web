@@ -1,11 +1,195 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import Nav from "../components/Nav.astro";
+import HeroBlock from "../components/HeroBlock.astro";
+import PromiseCard from "../components/PromiseCard.astro";
+import CapabilityCard from "../components/CapabilityCard.astro";
+import ProofChip from "../components/ProofChip.astro";
+import CtaBand from "../components/CtaBand.astro";
+import SiteFooter from "../components/SiteFooter.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const promises = [
+  { num: "01", title: "Your code", body: "source day one" },
+  { num: "02", title: "Your cloud", body: "your infra, your bill" },
+  { num: "03", title: "Your keys", body: "providers billed to you" },
+];
+
+const capabilities = [
+  {
+    fnum: "F1",
+    title: "Cost transparency",
+    body: "See cost per call, per token, per TTS character. To the cent, never rounded.",
+    href: "/docs/guides/cost-transparency",
+  },
+  {
+    fnum: "F2",
+    title: "Voice-conversation metrics",
+    body: "Latency, interruptions, dead air. The numbers your stack hides by default.",
+    href: "/docs/guides/voice-metrics",
+  },
+  {
+    fnum: "F3",
+    title: "Conversation replay",
+    body: "Scrub any past call. Hear what the model heard, see what it said.",
+    href: "/docs/guides/replay",
+  },
+  {
+    fnum: "F4",
+    title: "Multi-tenant attribution",
+    body: "One SDK, many tenants. Bills line up with brands. No shared keys.",
+    href: "/docs/guides/multi-tenant",
+  },
+  {
+    fnum: "F5",
+    title: "Cross-modality routing",
+    body: "Voice in, chat out. Or text in, phone callback. You pick the shape.",
+    href: "/docs/guides/routing",
+  },
+  {
+    fnum: "F6",
+    title: "Voice guardrails",
+    body: "Block PII, refuse off-topic, fall back when the model wanders mid-call.",
+    href: "/docs/guides/guardrails",
+  },
+];
+
+const proofs = [
+  { text: "+42% bookings · dental", rotation: -1.4 },
+  { text: "−68% missed · auto", rotation: 0.8 },
+  { text: "2.4× after-hours · plumbing", rotation: -0.6 },
+];
 ---
 
 <Layout>
-	<Welcome />
+  <Nav />
+
+  <main>
+    <HeroBlock />
+
+    <section class="vg-section vg-promises" aria-labelledby="vg-promises-h">
+      <h2 id="vg-promises-h" class="sr-only">The promise</h2>
+      <div class="vg-promises-grid">
+        {promises.map((p) => <PromiseCard num={p.num} title={p.title} body={p.body} />)}
+      </div>
+    </section>
+
+    <section class="vg-section vg-caps" aria-labelledby="vg-caps-h">
+      <div class="vg-section-head">
+        <span class="tiny-mono">§ Capabilities · v0.1</span>
+        <h2 id="vg-caps-h" class="h-hand xl vg-caps-h">
+          Six things the SDK gives you on day one.
+        </h2>
+      </div>
+      <div class="vg-caps-grid">
+        {capabilities.map((c) => (
+          <CapabilityCard fnum={c.fnum} title={c.title} body={c.body} href={c.href} />
+        ))}
+      </div>
+    </section>
+
+    <section class="vg-section vg-proof" aria-labelledby="vg-proof-h">
+      <h2 id="vg-proof-h" class="sr-only">Proof</h2>
+      <div class="vg-proof-row box hatch">
+        <span class="tiny-mono vg-proof-label">
+          Proof strip · Mahimai AI agency results
+        </span>
+        <span class="vg-proof-chips">
+          {proofs.map((p) => <ProofChip text={p.text} rotation={p.rotation} />)}
+        </span>
+      </div>
+    </section>
+
+    <CtaBand />
+  </main>
+
+  <SiteFooter />
 </Layout>
+
+<style>
+  .vg-section {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 56px 24px 0;
+  }
+
+  .vg-promises {
+    padding-top: 8px;
+  }
+  .vg-promises-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .vg-section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+  .vg-caps-h {
+    max-width: 620px;
+    margin: 0;
+  }
+  .vg-caps-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 26px;
+  }
+
+  .vg-proof {
+    margin-top: 64px;
+  }
+  .vg-proof-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding: 18px 22px;
+  }
+  .vg-proof-label {
+    white-space: nowrap;
+  }
+  .vg-proof-chips {
+    display: inline-flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (max-width: 880px) {
+    .vg-section {
+      padding: 40px 16px 0;
+    }
+    .vg-promises-grid {
+      grid-template-columns: 1fr;
+    }
+    .vg-caps-grid {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .vg-proof {
+      margin-top: 40px;
+    }
+  }
+
+  @media (min-width: 881px) and (max-width: 1080px) {
+    .vg-caps-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
