@@ -18,6 +18,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "fumadocs-core": "16.8.10",
+    "fumadocs-mdx": "15.0.3",
+    "fumadocs-ui": "16.8.10",
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4"
@@ -25,6 +28,7 @@
   "devDependencies": {
     "@opennextjs/cloudflare": "^1.19.9",
     "@tailwindcss/postcss": "^4",
+    "@types/mdx": "^2.0.13",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
