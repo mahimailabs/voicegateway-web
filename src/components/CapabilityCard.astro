@@ -1,0 +1,58 @@
+---
+interface Props {
+  fnum: string;
+  title: string;
+  body: string;
+  href?: string;
+}
+const { fnum, title, body, href = "#" } = Astro.props;
+---
+
+<article class="ab vg-cap">
+  <header class="ab-head">
+    <span class="label">{fnum}</span>
+    <span class="meta">{title}</span>
+  </header>
+  <div class="ab-body vg-cap-body">
+    <p class="p-hand vg-cap-line">{body}</p>
+    <a class="vg-cap-link" href={href} aria-label={`Read the docs for ${title}`}>
+      docs <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</article>
+
+<style>
+  .vg-cap {
+    display: flex;
+    flex-direction: column;
+  }
+  .vg-cap-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    min-height: 140px;
+  }
+  .vg-cap-line {
+    color: var(--ink);
+    min-height: 3.2em;
+  }
+  .vg-cap-link {
+    align-self: flex-start;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 18px;
+    padding: 2px 0;
+    border-bottom: 1.2px solid var(--ink);
+    transition: color 120ms ease, border-color 120ms ease;
+  }
+  .vg-cap-link:hover,
+  .vg-cap-link:focus-visible {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+</style>

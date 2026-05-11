@@ -1,0 +1,131 @@
+---
+---
+
+<section class="vg-hero" aria-labelledby="vg-hero-h">
+  <div class="vg-hero-inner">
+    <span class="stamp vg-hero-stamp" aria-hidden="true">never locked in</span>
+
+    <h1 id="vg-hero-h" class="h-hand xxl vg-hero-title">
+      Voice agent cost transparency.<br />
+      <u class="vg-hero-u">Self-hosted, on your keys, forever.</u>
+    </h1>
+
+    <p class="p-hand vg-hero-sub">
+      Drop one import. See cost per call, replay any conversation, route per
+      latency budget. <span class="vg-hero-emph">The Marc Lou of voice infrastructure.</span>
+    </p>
+
+    <div class="vg-hero-ctas">
+      <a class="btn accent vg-hero-cta-primary" href="/docs/getting-started">
+        Install in 60 seconds
+      </a>
+      <a class="btn vg-hero-cta-ghost" href="/arena">
+        Try the Arena
+      </a>
+    </div>
+
+    <div class="vg-hero-meta">
+      <span class="tiny-mono">npm i @mahimai/voicegateway</span>
+      <span class="vg-hero-meta-sep" aria-hidden="true">·</span>
+      <span class="tiny-mono">MIT · open source · zero telemetry</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .vg-hero {
+    position: relative;
+    width: 100%;
+  }
+
+  .vg-hero-inner {
+    position: relative;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 72px 24px 56px;
+  }
+
+  /* override .stamp default position so it lands inside the page edge */
+  .vg-hero-stamp {
+    right: 18px;
+    top: 56px;
+    font-size: 10px;
+    padding: 4px 12px;
+  }
+
+  .vg-hero-title {
+    margin: 0;
+    font-size: clamp(34px, 6vw, 56px);
+    line-height: 1;
+    max-width: 880px;
+  }
+
+  /* hand-style underline: thicker, terracotta, lifted off the baseline */
+  .vg-hero-u {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 3px;
+    text-decoration-skip-ink: none;
+    text-underline-offset: 6px;
+  }
+
+  .vg-hero-sub {
+    margin: 22px 0 0;
+    font-size: clamp(15px, 1.4vw, 18px);
+    max-width: 620px;
+    color: var(--ink-2);
+  }
+
+  .vg-hero-emph {
+    color: var(--ink);
+    border-bottom: 1.5px solid var(--ink);
+    padding-bottom: 1px;
+  }
+
+  .vg-hero-ctas {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+  }
+
+  .vg-hero-cta-primary,
+  .vg-hero-cta-ghost {
+    font-size: 16px;
+    padding: 8px 18px;
+  }
+
+  .vg-hero-meta {
+    margin-top: 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border: 1.2px dashed var(--line-soft);
+    border-radius: 6px;
+    background: var(--paper);
+  }
+
+  .vg-hero-meta-sep {
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 720px) {
+    .vg-hero-inner {
+      padding: 48px 16px 36px;
+    }
+    .vg-hero-stamp {
+      top: 26px;
+      right: 12px;
+      font-size: 8.5px;
+      padding: 3px 8px;
+    }
+    .vg-hero-meta {
+      flex-wrap: wrap;
+    }
+    .vg-hero-meta-sep {
+      display: none;
+    }
+  }
+</style>
