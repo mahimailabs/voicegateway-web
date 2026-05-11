@@ -4,7 +4,6 @@ import Nav from "../components/Nav.astro";
 import HeroBlock from "../components/HeroBlock.astro";
 import PromiseCard from "../components/PromiseCard.astro";
 import CapabilityCard from "../components/CapabilityCard.astro";
-import ProofChip from "../components/ProofChip.astro";
 import CtaBand from "../components/CtaBand.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 
@@ -52,12 +51,6 @@ const capabilities = [
     href: "/docs/guides/guardrails",
   },
 ];
-
-const proofs = [
-  { text: "+42% bookings · dental", rotation: -1.4 },
-  { text: "−68% missed · auto", rotation: 0.8 },
-  { text: "2.4× after-hours · plumbing", rotation: -0.6 },
-];
 ---
 
 <Layout>
@@ -84,18 +77,6 @@ const proofs = [
         {capabilities.map((c) => (
           <CapabilityCard fnum={c.fnum} title={c.title} body={c.body} href={c.href} />
         ))}
-      </div>
-    </section>
-
-    <section class="vg-section vg-proof" aria-labelledby="vg-proof-h">
-      <h2 id="vg-proof-h" class="sr-only">Proof</h2>
-      <div class="vg-proof-row box hatch">
-        <span class="tiny-mono vg-proof-label">
-          Proof strip · Mahimai AI agency results
-        </span>
-        <span class="vg-proof-chips">
-          {proofs.map((p) => <ProofChip text={p.text} rotation={p.rotation} />)}
-        </span>
       </div>
     </section>
 
@@ -139,26 +120,6 @@ const proofs = [
     gap: 26px;
   }
 
-  .vg-proof {
-    margin-top: 64px;
-  }
-  .vg-proof-row {
-    display: flex;
-    align-items: center;
-    gap: 18px;
-    flex-wrap: wrap;
-    padding: 18px 22px;
-  }
-  .vg-proof-label {
-    white-space: nowrap;
-  }
-  .vg-proof-chips {
-    display: inline-flex;
-    gap: 12px;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-
   .sr-only {
     position: absolute;
     width: 1px;
@@ -181,9 +142,6 @@ const proofs = [
     .vg-caps-grid {
       grid-template-columns: 1fr;
       gap: 18px;
-    }
-    .vg-proof {
-      margin-top: 40px;
     }
   }
 
