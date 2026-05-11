@@ -74,7 +74,7 @@ export default function RootLayout({
       className={`${caveat.variable} ${kalam.variable} ${jb.variable} ${inter.variable}`}
     >
       <body>
-        <RootProvider>{children}</RootProvider>
+        <RootProvider theme={{ enabled: false }}>{children}</RootProvider>
       </body>
     </html>
   );

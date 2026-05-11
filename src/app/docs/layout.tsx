@@ -8,7 +8,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <Nav />
-      <DocsLayout tree={source.pageTree} nav={{ title: 'VoiceGateway // DOCS' }}>
+      <DocsLayout
+        tree={source.pageTree}
+        nav={{ title: 'VoiceGateway // DOCS' }}
+        themeSwitch={{ enabled: false }}
+      >
         {children}
       </DocsLayout>
       <SiteFooter />
