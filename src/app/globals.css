@@ -47,3 +47,31 @@ button:focus-visible,
 body {
   min-height: 100dvh;
 }
+
+/*
+ * Fumadocs code blocks and prose surfaces sit on top of the body dot-grid.
+ * The default Pre background is semi-transparent so the dots bleed through
+ * and read as horizontal lines between code lines. Force a solid paper-2
+ * background on every code surface so the codeblocks look clean.
+ */
+#nd-docs-layout pre,
+#nd-docs-layout figure[data-rehype-pretty-code-figure],
+#nd-docs-layout figure[data-rehype-pretty-code-figure] pre,
+#nd-docs-layout [data-line],
+.fd-codeblock,
+.fd-codeblock pre {
+  background: var(--paper-2) !important;
+  background-image: none !important;
+}
+
+#nd-docs-layout pre code,
+#nd-docs-layout figure[data-rehype-pretty-code-figure] code,
+.fd-codeblock code {
+  background: transparent !important;
+}
+
+/* prose article surface needs to cover the body dot-grid too */
+#nd-docs-layout article {
+  background: var(--paper);
+}
+
