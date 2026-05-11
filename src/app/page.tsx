@@ -1,6 +1,7 @@
 import HeroBlock from '../components/HeroBlock';
 import PromiseCard from '../components/PromiseCard';
 import CapabilityCard from '../components/CapabilityCard';
+import CtaBand from '../components/CtaBand';
 import styles from './page.module.css';
 
 const promises = [
@@ -93,6 +94,8 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      <CtaBand />
     </main>
   );
 }
