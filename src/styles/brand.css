@@ -26,11 +26,11 @@
   --accent-hex: #c46a3a;
   --accent-soft-hex: #f4ead8;
 
-  /* type stack */
-  --hand: 'Kalam', 'Caveat', system-ui;
-  --hand-title: 'Caveat', 'Kalam', system-ui;
-  --mono: 'JetBrains Mono', ui-monospace, Menlo, monospace;
-  --sans: 'Inter', system-ui;
+  /* type stack (next/font CSS vars set on <html> in src/app/layout.tsx) */
+  --hand: var(--font-kalam), 'Kalam', 'Caveat', system-ui;
+  --hand-title: var(--font-caveat), 'Caveat', 'Kalam', system-ui;
+  --mono: var(--font-jb), 'JetBrains Mono', ui-monospace, Menlo, monospace;
+  --sans: var(--font-inter), 'Inter', system-ui;
 }
 
 body.dark {

@@ -1,8 +1,34 @@
 import type { Metadata } from 'next';
+import { Caveat, Kalam, JetBrains_Mono, Inter } from 'next/font/google';
 import { RootProvider } from 'fumadocs-ui/provider/next';
 import Nav from '../components/Nav';
 import SiteFooter from '../components/SiteFooter';
 import './globals.css';
+
+const caveat = Caveat({
+  subsets: ['latin'],
+  weight: ['500', '600', '700'],
+  variable: '--font-caveat',
+  display: 'swap',
+});
+const kalam = Kalam({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-kalam',
+  display: 'swap',
+});
+const jb = JetBrains_Mono({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  variable: '--font-jb',
+  display: 'swap',
+});
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-inter',
+  display: 'swap',
+});
 
 const title = 'VoiceGateway · self-hosted voice agent SDK';
 const description =
@@ -45,7 +71,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${caveat.variable} ${kalam.variable} ${jb.variable} ${inter.variable}`}
+    >
       <body>
         <RootProvider>
           <Nav />
