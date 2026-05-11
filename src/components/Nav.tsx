@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import styles from './Nav.module.css';
 
 const navItems = [
@@ -10,11 +12,11 @@ const navItems = [
 export default function Nav() {
   return (
     <header className={styles.vgTopbar}>
-      <a className={styles.vgWordmark} href="/" aria-label="VoiceGateway home">
-        <img className={styles.vgMascot} src="/brand/goat.svg" alt="" width={32} height={32} />
+      <Link className={styles.vgWordmark} href="/" aria-label="VoiceGateway home">
+        <Image className={styles.vgMascot} src="/brand/goat.svg" alt="" width={32} height={32} priority />
         <span className={styles.vgName}>VoiceGateway</span>
-        <span className={styles.vgTag} aria-hidden="true">// SDK</span>
-      </a>
+        <span className={styles.vgTag} aria-hidden="true">{'// SDK'}</span>
+      </Link>
 
       <nav className={styles.vgLinks} aria-label="Primary">
         {navItems.map((item, i) => (
