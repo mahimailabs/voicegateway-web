@@ -4,11 +4,23 @@ interface Props {
   title: string;
   body: string;
   href?: string;
+  status: string;
 }
-const { fnum, title, body, href = "#" } = Astro.props;
+const { fnum, title, body, href = "#", status } = Astro.props;
+
+const isShipped = status === "shipped";
+const pillLabel = isShipped ? "SHIPPED · v0.1" : `SHIPPING · ${status}`;
+const pillAria = isShipped
+  ? "Shipped in v0.1"
+  : `Shipping in ${status}`;
 ---
 
 <article class="ab vg-cap">
+  <span
+    class="vg-cap-status"
+    data-shipped={String(isShipped)}
+    aria-label={pillAria}
+  >{pillLabel}</span>
   <header class="ab-head">
     <span class="label">{fnum}</span>
     <span class="meta">{title}</span>
@@ -25,6 +37,7 @@ const { fnum, title, body, href = "#" } = Astro.props;
   .vg-cap {
     display: flex;
     flex-direction: column;
+    overflow: visible;
   }
   .vg-cap-body {
     display: flex;
@@ -54,5 +67,29 @@ const { fnum, title, body, href = "#" } = Astro.props;
   .vg-cap-link:focus-visible {
     color: var(--accent);
     border-bottom-color: var(--accent);
+  }
+
+  .vg-cap-status {
+    position: absolute;
+    top: -10px;
+    right: 14px;
+    z-index: 3;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    line-height: 1;
+    letter-spacing: 0.14em;
+    padding: 4px 10px 3px;
+    border-radius: 12px;
+    background: var(--paper-2);
+    border: 1.2px solid var(--ink-soft);
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    white-space: nowrap;
+    transform: rotate(-0.5deg);
+  }
+  .vg-cap-status[data-shipped="true"] {
+    background: var(--paper);
+    border-color: var(--accent);
+    color: var(--accent);
   }
 </style>

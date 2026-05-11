@@ -19,36 +19,42 @@ const capabilities = [
     title: "Cost transparency",
     body: "See cost per call, per token, per TTS character. To the cent, never rounded.",
     href: "/docs/guides/cost-transparency",
+    status: "shipped",
   },
   {
     fnum: "F2",
     title: "Voice-conversation metrics",
     body: "Latency, interruptions, dead air. The numbers your stack hides by default.",
     href: "/docs/guides/voice-metrics",
+    status: "v0.2",
   },
   {
     fnum: "F3",
     title: "Conversation replay",
     body: "Scrub any past call. Hear what the model heard, see what it said.",
     href: "/docs/guides/replay",
+    status: "v0.3",
   },
   {
     fnum: "F4",
     title: "Multi-tenant attribution",
     body: "One SDK, many tenants. Bills line up with brands. No shared keys.",
     href: "/docs/guides/multi-tenant",
+    status: "v0.4",
   },
   {
     fnum: "F5",
     title: "Cross-modality routing",
     body: "Voice in, chat out. Or text in, phone callback. You pick the shape.",
     href: "/docs/guides/routing",
+    status: "v0.5",
   },
   {
     fnum: "F6",
     title: "Voice guardrails",
     body: "Block PII, refuse off-topic, fall back when the model wanders mid-call.",
     href: "/docs/guides/guardrails",
+    status: "v0.6",
   },
 ];
 ---
@@ -70,12 +76,18 @@ const capabilities = [
       <div class="vg-section-head">
         <span class="tiny-mono">§ Capabilities · v0.1</span>
         <h2 id="vg-caps-h" class="h-hand xl vg-caps-h">
-          Six things the SDK gives you on day one.
+          Six capabilities. One SDK. Shipping across v0.1 to v0.6.
         </h2>
       </div>
       <div class="vg-caps-grid">
         {capabilities.map((c) => (
-          <CapabilityCard fnum={c.fnum} title={c.title} body={c.body} href={c.href} />
+          <CapabilityCard
+            fnum={c.fnum}
+            title={c.title}
+            body={c.body}
+            href={c.href}
+            status={c.status}
+          />
         ))}
       </div>
     </section>
