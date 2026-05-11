@@ -1,65 +1,98 @@
-import Image from "next/image";
+import HeroBlock from '../components/HeroBlock';
+import PromiseCard from '../components/PromiseCard';
+import CapabilityCard from '../components/CapabilityCard';
+import styles from './page.module.css';
 
-export default function Home() {
+const promises = [
+  { num: '01', title: 'Your code', body: 'source day one' },
+  { num: '02', title: 'Your cloud', body: 'your infra, your bill' },
+  { num: '03', title: 'Your keys', body: 'providers billed to you' },
+];
+
+const capabilities = [
+  {
+    fnum: 'F1',
+    title: 'Cost transparency',
+    body: 'See cost per call, per token, per TTS character. To the cent, never rounded.',
+    href: '/docs/guides/cost-transparency',
+    status: 'shipped',
+  },
+  {
+    fnum: 'F2',
+    title: 'Voice-conversation metrics',
+    body: 'Latency, interruptions, dead air. The numbers your stack hides by default.',
+    href: '/docs/guides/voice-metrics',
+    status: 'v0.2',
+  },
+  {
+    fnum: 'F3',
+    title: 'Conversation replay',
+    body: 'Scrub any past call. Hear what the model heard, see what it said.',
+    href: '/docs/guides/replay',
+    status: 'v0.3',
+  },
+  {
+    fnum: 'F4',
+    title: 'Multi-tenant attribution',
+    body: 'One SDK, many tenants. Bills line up with brands. No shared keys.',
+    href: '/docs/guides/multi-tenant',
+    status: 'v0.4',
+  },
+  {
+    fnum: 'F5',
+    title: 'Cross-modality routing',
+    body: 'Voice in, chat out. Or text in, phone callback. You pick the shape.',
+    href: '/docs/guides/routing',
+    status: 'v0.5',
+  },
+  {
+    fnum: 'F6',
+    title: 'Voice guardrails',
+    body: 'Block PII, refuse off-topic, fall back when the model wanders mid-call.',
+    href: '/docs/guides/guardrails',
+    status: 'v0.6',
+  },
+];
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main>
+      <HeroBlock />
+
+      <section
+        className={`${styles.vgSection} ${styles.vgPromises}`}
+        aria-labelledby="vg-promises-h"
+      >
+        <h2 id="vg-promises-h" className={styles.srOnly}>
+          The promise
+        </h2>
+        <div className={styles.vgPromisesGrid}>
+          {promises.map((p) => (
+            <PromiseCard key={p.num} num={p.num} title={p.title} body={p.body} />
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+      </section>
+
+      <section className={styles.vgSection} aria-labelledby="vg-caps-h">
+        <div className={styles.vgSectionHead}>
+          <span className="tiny-mono">§ Capabilities · v0.1</span>
+          <h2 id="vg-caps-h" className={`h-hand xl ${styles.vgCapsH}`}>
+            Six capabilities. One SDK. Shipping across v0.1 to v0.6.
+          </h2>
+        </div>
+        <div className={styles.vgCapsGrid}>
+          {capabilities.map((c) => (
+            <CapabilityCard
+              key={c.fnum}
+              fnum={c.fnum}
+              title={c.title}
+              body={c.body}
+              href={c.href}
+              status={c.status}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          ))}
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }
