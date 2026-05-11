@@ -1,0 +1,87 @@
+.vgHero {
+  position: relative;
+  width: 100%;
+}
+
+.vgHeroInner {
+  position: relative;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 72px 24px 56px;
+}
+
+.vgHeroStamp {
+  right: 18px;
+  top: 56px;
+  font-size: 10px;
+  padding: 4px 12px;
+}
+
+.vgHeroTitle {
+  margin: 0;
+  font-size: clamp(34px, 6vw, 56px);
+  line-height: 1;
+  max-width: 880px;
+}
+
+.vgHeroU {
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 3px;
+  text-decoration-skip-ink: none;
+  text-underline-offset: 6px;
+}
+
+.vgHeroSub {
+  margin: 22px 0 0;
+  font-size: clamp(15px, 1.4vw, 18px);
+  max-width: 620px;
+  color: var(--ink-2);
+}
+
+.vgHeroCtas {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+.vgHeroCtaPrimary,
+.vgHeroCtaGhost {
+  font-size: 16px;
+  padding: 8px 18px;
+}
+
+.vgHeroMeta {
+  margin-top: 22px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1.2px dashed var(--line-soft);
+  border-radius: 6px;
+  background: var(--paper);
+}
+
+.vgHeroMetaSep {
+  color: var(--ink-soft);
+}
+
+@media (max-width: 720px) {
+  .vgHeroInner {
+    padding: 48px 16px 36px;
+  }
+  .vgHeroStamp {
+    top: 26px;
+    right: 12px;
+    font-size: 8.5px;
+    padding: 3px 8px;
+  }
+  .vgHeroMeta {
+    flex-wrap: wrap;
+  }
+  .vgHeroMetaSep {
+    display: none;
+  }
+}
