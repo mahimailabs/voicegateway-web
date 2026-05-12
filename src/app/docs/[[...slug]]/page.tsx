@@ -1,7 +1,13 @@
 import { source } from '../../../lib/source';
 import { notFound } from 'next/navigation';
-import defaultMdxComponents from 'fumadocs-ui/mdx';
 import { DocsPage, DocsBody, DocsTitle, DocsDescription } from 'fumadocs-ui/page';
+import { getMDXComponents } from '../../../../mdx-components';
+import { DocsAiActions } from '../../../components/DocsAiActions';
+import {
+  getCanonicalUrl,
+  getDocsGithubUrl,
+  getDocsMarkdownUrl,
+} from '../../../lib/docs-ai';
 
 export default async function Page({
   params,
@@ -13,11 +19,20 @@ export default async function Page({
   if (!page) notFound();
   const MDX = page.data.body;
   return (
-    <DocsPage toc={page.data.toc}>
+    <DocsPage
+      toc={page.data.toc}
+      tableOfContent={{ style: 'clerk' }}
+      tableOfContentPopover={{ style: 'clerk' }}
+    >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
+      <DocsAiActions
+        githubUrl={getDocsGithubUrl(page)}
+        markdownUrl={getDocsMarkdownUrl(page.url)}
+        pageUrl={getCanonicalUrl(page.url)}
+      />
       <DocsBody>
-        <MDX components={defaultMdxComponents} />
+        <MDX components={getMDXComponents()} />
       </DocsBody>
     </DocsPage>
   );
