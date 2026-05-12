@@ -6,8 +6,6 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 The marketing + public documentation site for **VoiceGateway** (deployed at https://voicegateway.mahimai.ca). Marketing at `/`, `/about`. Public docs at `/docs/*` served by Fumadocs from MDX synced out of the sibling `voicegateway` repo at build time. Next.js 15+ App Router + Tailwind 4, served from Cloudflare Workers via the `@opennextjs/cloudflare` adapter. (`@cloudflare/next-on-pages` is deprecated and does not support Next 16; do not switch back.)
 
-The previous Astro source lives under `legacy/` for one-week soak. A follow-up commit on main removes it after merge.
-
 ## Commands
 
 | Command | What it does |
