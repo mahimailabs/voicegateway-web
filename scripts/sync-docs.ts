@@ -76,6 +76,10 @@ function copyTree(src: string, dst: string) {
     if (statSync(s).isDirectory()) copyTree(s, d);
     else if (name.endsWith('.md') || name.endsWith('.mdx')) {
       const raw = readFileSync(s, 'utf8');
+      const targetName =
+        name.endsWith('.md') && raw.includes('<DemoWidget') ? name.replace(/\.md$/, '.mdx') : name;
+      const d = join(dst, targetName);
+      if (targetName !== name) rmSync(join(dst, name), { force: true });
       writeFileSync(d, ensureFrontmatter(raw, name));
     }
   }
