@@ -15,7 +15,7 @@ import { tmpdir } from 'node:os';
 const SOURCE_REPO = process.env.SOURCE_REPO ?? 'https://github.com/mahimailabs/voicegateway.git';
 const SOURCE_REF = process.env.SOURCE_REF ?? 'main';
 const TARGET = 'content/docs';
-const NATIVE_DOCS = new Set(['get-started.md', 'get-started.mdx']);
+const NATIVE_DOCS = new Set(['index.md', 'index.mdx', 'get-started.md', 'get-started.mdx']);
 
 const tmp = join(tmpdir(), `vg-docs-${Date.now()}`);
 
