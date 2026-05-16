@@ -11,7 +11,7 @@ Self-hosted voice agent SDK for LiveKit voice agents. VoiceGateway is built for
 teams that want provider routing, per-modality cost visibility, and
 reconciliation against actual provider invoices while keeping their own keys.
 
-## Where VoiceGateway Fits
+## Where VoiceGateway fits
 
 VoiceGateway sits between your LiveKit agent and STT, LLM, and TTS providers.
 It tracks audio minutes, tokens, characters, latency, sessions, and project
@@ -26,7 +26,7 @@ For a longer breakdown of which tool fits which workload, see the
 
 For the full first-run path, start with [Get started](/docs/get-started).
 
-## Run With Docker
+## Run with Docker
 
 ```bash title="Shell"
 git clone https://github.com/mahimailabs/voicegateway
@@ -34,7 +34,7 @@ cd voicegateway
 docker compose up -d
 ```
 
-## Use From Claude Code
+## Use from Claude Code
 
 ```bash title="Shell"
 claude mcp add voicegateway --command "voicegw mcp --transport stdio"
