@@ -1,4 +1,5 @@
 import { defineConfig, defineDocs } from 'fumadocs-mdx/config';
+import { remarkMdxMermaid } from 'fumadocs-core/mdx-plugins';
 import {
   remarkCodeBlockTitles,
   remarkLegacyCodeGroups,
@@ -9,7 +10,7 @@ export const docs = defineDocs({
   docs: {
     postprocess: {
       includeProcessedMarkdown: {
-        mdxAsPlaceholder: ['DemoWidget', 'PackageManagerTabs'],
+        mdxAsPlaceholder: ['DemoWidget', 'PackageManagerTabs', 'Mermaid'],
       },
     },
   },
@@ -21,6 +22,7 @@ export default defineConfig({
       remarkLegacyCodeGroups,
       ...plugins,
       remarkCodeBlockTitles,
+      remarkMdxMermaid,
     ],
   },
 });

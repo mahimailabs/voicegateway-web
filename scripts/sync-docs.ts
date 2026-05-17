@@ -93,8 +93,12 @@ function copyTree(src: string, dst: string, relativeDir = '') {
       if (NATIVE_DOCS.has(relativePath)) continue;
 
       const raw = readFileSync(s, 'utf8');
+      const containsKnownJsx =
+        /<(DemoWidget|PackageManagerTabs|Mermaid|Files|Folder|File|Card|Cards|Tabs|Tab|Accordion|Accordions|Callout|Steps|Step)[\s/>]/.test(
+          raw,
+        );
       const targetName =
-        name.endsWith('.md') && raw.includes('<DemoWidget') ? name.replace(/\.md$/, '.mdx') : name;
+        name.endsWith('.md') && containsKnownJsx ? name.replace(/\.md$/, '.mdx') : name;
       const d = join(dst, targetName);
       if (targetName !== name) rmSync(join(dst, name), { force: true });
       writeFileSync(d, ensureFrontmatter(raw, name));
