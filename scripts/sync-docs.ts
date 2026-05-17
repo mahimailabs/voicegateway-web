@@ -31,6 +31,19 @@ if (!existsSync(sourceDocs)) {
   process.exit(1);
 }
 
+// Clean previously-synced content before re-copying. Native files
+// (index.md, get-started.md) are preserved; everything else is
+// regenerated from source. Without this step, files or directories
+// removed from the upstream docs/ tree would persist as stale local
+// copies (the original symptom: docs/migration/ was deleted upstream
+// but content/docs/migration/ stuck around in local checkouts).
+if (existsSync(TARGET)) {
+  for (const name of readdirSync(TARGET)) {
+    if (NATIVE_DOCS.has(name)) continue;
+    rmSync(join(TARGET, name), { recursive: true, force: true });
+  }
+}
+
 function titleCase(slug: string) {
   return slug.replace(/[-_]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 }
@@ -80,8 +93,12 @@ function copyTree(src: string, dst: string, relativeDir = '') {
       if (NATIVE_DOCS.has(relativePath)) continue;
 
       const raw = readFileSync(s, 'utf8');
+      const containsKnownJsx =
+        /<(DemoWidget|PackageManagerTabs|Mermaid|Files|Folder|File|Card|Cards|Tabs|Tab|Accordion|Accordions|Callout|Steps|Step)[\s/>]/.test(
+          raw,
+        );
       const targetName =
-        name.endsWith('.md') && raw.includes('<DemoWidget') ? name.replace(/\.md$/, '.mdx') : name;
+        name.endsWith('.md') && containsKnownJsx ? name.replace(/\.md$/, '.mdx') : name;
       const d = join(dst, targetName);
       if (targetName !== name) rmSync(join(dst, name), { force: true });
       writeFileSync(d, ensureFrontmatter(raw, name));
