@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-The marketing + public documentation site for **VoiceGateway** (deployed at https://voicegateway.mahimai.ca). Marketing at `/`, `/about`. Public docs at `/docs/*` served by Fumadocs from MDX synced out of the sibling `voicegateway` repo at build time. Next.js 15+ App Router + Tailwind 4, served from Cloudflare Workers via the `@opennextjs/cloudflare` adapter. (`@cloudflare/next-on-pages` is deprecated and does not support Next 16; do not switch back.)
+The marketing + public documentation site for **VoiceGateway** (deployed at https://voicegateway.mahimai.ca). Marketing at `/`, `/about`. Public docs at `/docs/*` served by Fumadocs from MDX synced out of the sibling `voicegateway` repo at build time. Next.js 16 App Router + Tailwind 4, deployed on Vercel (native Next.js, Hobby tier).
 
 ## Commands
 
@@ -12,21 +12,17 @@ The marketing + public documentation site for **VoiceGateway** (deployed at http
 | --- | --- |
 | `pnpm dev` | Next.js dev server on http://localhost:3000 |
 | `pnpm build` | Next.js production build (`prebuild` runs `pnpm sync-docs` first) |
-| `pnpm build:cf` | Build + adapt for Cloudflare Workers via `@opennextjs/cloudflare` |
-| `pnpm preview:cf` | Local preview of the Cloudflare worker build |
-| `pnpm deploy` | Build, adapt, `wrangler deploy` |
 | `pnpm sync-docs` | Shallow-clone `voicegateway` and copy `docs/` into `content/docs/` |
 | `pnpm typecheck` | `tsc --noEmit` |
 | `pnpm lint` | ESLint |
 
-Node 22.12+, pnpm 9+. Cloudflare-GitHub auto-deploy is configured on push to `main`; there is no `.github/workflows/deploy.yml` in this repo.
+Node 22.12+, pnpm 9+. Vercel-GitHub auto-deploy is configured on push to `main`; preview deployments fire on every other branch. No `.github/workflows/deploy.yml` is needed.
 
 ## Architecture notes
 
 - **Content lives in the SDK repo.** `content/docs/` is gitignored except for `meta.json` files and `index.mdx`. `scripts/sync-docs.ts` shallow-clones `https://github.com/mahimailabs/voicegateway.git` and copies `docs/*.md` plus `CHANGELOG.md` into `content/docs/` on every build. To preview new docs locally: commit them upstream, then `pnpm sync-docs`.
-- **Cloudflare adapter is `@opennextjs/cloudflare`.** It generates `.open-next/worker.js` and `.open-next/assets/` consumed by `wrangler.jsonc`. `next-on-pages` is deprecated since Next 16.
-- **`wrangler.jsonc`** sets `compatibility_flags: ["nodejs_compat", "global_fetch_strictly_public"]`. New backend calls must hit public hostnames only.
-- **Fumadocs versions are pinned exact** (no `^`): `fumadocs-ui@16.8.10`, `fumadocs-mdx@15.0.3`, `fumadocs-core@16.8.10`. Major bumps require re-checking the Cloudflare deploy guide.
+- **Host is Vercel.** No platform adapter, no `vercel.ts`, no `vercel.json`: Next.js is auto-detected. Adding a config file would be premature; do so only when there is a custom rewrite, header, or cron to express.
+- **Fumadocs versions are pinned exact** (no `^`): `fumadocs-ui@16.8.10`, `fumadocs-mdx@15.0.3`, `fumadocs-core@16.8.10`. Major bumps require re-checking compatibility with Next.js + Vercel before merging.
 - **`mdx-components.tsx`** at repo root exposes `PackageManagerTabs` to all MDX files automatically.
 - **Brand kit tokens** live in `src/styles/brand.css` and are exposed to Tailwind 4 via `@theme` in `src/app/globals.css`. Edit tokens there; do not duplicate values in components.
 - **Fumadocs theme variables** (`--color-fd-*`) are overridden in `globals.css` to match the VG brand palette. No visual seam between marketing and docs.
