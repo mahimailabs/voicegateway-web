@@ -10,10 +10,6 @@ const WEB_REPO_URL = 'https://github.com/mahimailabs/voicegateway-web/blob/main'
 
 type DocsPage = NonNullable<ReturnType<typeof source.getPage>>;
 
-export function getDocsMarkdownUrl(pageUrl: string): string {
-  return pageUrl === '/docs' ? '/docs-md' : pageUrl.replace(/^\/docs/, '/docs-md');
-}
-
 export function getDocsGithubUrl(page: DocsPage): string {
   if (page.path === 'changelog.mdx') {
     return `${SDK_REPO_URL}/CHANGELOG.md`;

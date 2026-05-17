@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState, type ReactNode } from 'react';
+import { useMemo, type ReactNode } from 'react';
 import { buttonVariants } from 'fumadocs-ui/components/ui/button';
 import {
   Popover,
@@ -10,7 +10,6 @@ import {
 
 type DocsAiActionsProps = {
   githubUrl: string;
-  markdownUrl: string;
   pageUrl: string;
 };
 
@@ -20,20 +19,7 @@ type OpenItem = {
   title: string;
 };
 
-const actionButtonClass = `${buttonVariants({
-  color: 'secondary',
-  size: 'sm',
-})} gap-2 [&_svg]:size-3.5 [&_svg]:text-fd-muted-foreground`;
-
-export function DocsAiActions({
-  githubUrl,
-  markdownUrl,
-  pageUrl,
-}: DocsAiActionsProps) {
-  const [copyState, setCopyState] = useState<'idle' | 'copying' | 'copied' | 'error'>(
-    'idle',
-  );
-
+export function DocsAiActions({ githubUrl, pageUrl }: DocsAiActionsProps) {
   const openItems = useMemo<OpenItem[]>(() => {
     const q = `Read ${pageUrl}, I want to ask questions about it.`;
 
@@ -42,11 +28,6 @@ export function DocsAiActions({
         title: 'Open in GitHub',
         href: githubUrl,
         icon: <GitHubIcon />,
-      },
-      {
-        title: 'View as Markdown',
-        href: markdownUrl,
-        icon: <TextIcon />,
       },
       {
         title: 'Open in Scira AI',
@@ -72,43 +53,10 @@ export function DocsAiActions({
         icon: <CursorIcon />,
       },
     ];
-  }, [githubUrl, markdownUrl, pageUrl]);
-
-  async function copyMarkdown() {
-    setCopyState('copying');
-
-    try {
-      const response = await fetch(markdownUrl);
-
-      if (!response.ok) {
-        throw new Error(`Failed to fetch Markdown: ${response.status}`);
-      }
-
-      await navigator.clipboard.writeText(await response.text());
-      setCopyState('copied');
-      window.setTimeout(() => setCopyState('idle'), 1600);
-    } catch {
-      setCopyState('error');
-      window.setTimeout(() => setCopyState('idle'), 2400);
-    }
-  }
+  }, [githubUrl, pageUrl]);
 
   return (
-    <div className="mb-8 flex flex-wrap items-center gap-2">
-      <button
-        className={actionButtonClass}
-        disabled={copyState === 'copying'}
-        onClick={copyMarkdown}
-        type="button"
-      >
-        {copyState === 'copied' ? <CheckIcon /> : <CopyIcon />}
-        {copyState === 'copied'
-          ? 'Copied'
-          : copyState === 'error'
-            ? 'Copy failed'
-            : 'Copy Markdown'}
-      </button>
-
+    <div className="mb-8">
       <Popover>
         <PopoverTrigger
           className={`${buttonVariants({
@@ -136,42 +84,6 @@ export function DocsAiActions({
         </PopoverContent>
       </Popover>
     </div>
-  );
-}
-
-function CheckIcon() {
-  return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
-      <path
-        d="m5 12 4 4L19 6"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
-
-function CopyIcon() {
-  return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
-      <rect
-        height="13"
-        rx="2"
-        stroke="currentColor"
-        strokeWidth="2"
-        width="13"
-        x="8"
-        y="8"
-      />
-      <path
-        d="M5 16H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v1"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="2"
-      />
-    </svg>
   );
 }
 
@@ -208,19 +120,6 @@ function GitHubIcon() {
   return (
     <svg aria-hidden="true" fill="currentColor" viewBox="0 0 24 24">
       <path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.49.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.35-3.37-1.35-.45-1.16-1.11-1.46-1.11-1.46-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.57 9.57 0 0 1 12 6.83c.85 0 1.71.11 2.5.33 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85V21c0 .27.18.58.69.48A10 10 0 0 0 22 12c0-5.52-4.48-10-10-10Z" />
-    </svg>
-  );
-}
-
-function TextIcon() {
-  return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24">
-      <path
-        d="M4 6h16M4 12h16M4 18h9"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="2"
-      />
     </svg>
   );
 }

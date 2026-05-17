@@ -3,11 +3,7 @@ import { notFound } from 'next/navigation';
 import { DocsPage, DocsBody, DocsTitle, DocsDescription } from 'fumadocs-ui/page';
 import { getMDXComponents } from '../../../../mdx-components';
 import { DocsAiActions } from '../../../components/DocsAiActions';
-import {
-  getCanonicalUrl,
-  getDocsGithubUrl,
-  getDocsMarkdownUrl,
-} from '../../../lib/docs-ai';
+import { getCanonicalUrl, getDocsGithubUrl } from '../../../lib/docs-ai';
 
 export default async function Page({
   params,
@@ -28,7 +24,6 @@ export default async function Page({
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsAiActions
         githubUrl={getDocsGithubUrl(page)}
-        markdownUrl={getDocsMarkdownUrl(page.url)}
         pageUrl={getCanonicalUrl(page.url)}
       />
       <DocsBody>
