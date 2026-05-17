@@ -15,6 +15,7 @@ import { tmpdir } from 'node:os';
 const SOURCE_REPO = process.env.SOURCE_REPO ?? 'https://github.com/mahimailabs/voicegateway.git';
 const SOURCE_REF = process.env.SOURCE_REF ?? 'main';
 const TARGET = 'content/docs';
+const NATIVE_DOCS = new Set(['index.md', 'index.mdx', 'get-started.md', 'get-started.mdx']);
 
 const tmp = join(tmpdir(), `vg-docs-${Date.now()}`);
 
@@ -68,13 +69,16 @@ function ensureFrontmatter(content: string, filename: string): string {
   return `---\n${fmLines.join('\n')}\n---\n\n${body.trimStart()}`;
 }
 
-function copyTree(src: string, dst: string) {
+function copyTree(src: string, dst: string, relativeDir = '') {
   if (!existsSync(dst)) mkdirSync(dst, { recursive: true });
   for (const name of readdirSync(src)) {
+    const relativePath = relativeDir ? `${relativeDir}/${name}` : name;
     const s = join(src, name);
     const d = join(dst, name);
-    if (statSync(s).isDirectory()) copyTree(s, d);
+    if (statSync(s).isDirectory()) copyTree(s, d, relativePath);
     else if (name.endsWith('.md') || name.endsWith('.mdx')) {
+      if (NATIVE_DOCS.has(relativePath)) continue;
+
       const raw = readFileSync(s, 'utf8');
       const targetName =
         name.endsWith('.md') && raw.includes('<DemoWidget') ? name.replace(/\.md$/, '.mdx') : name;

@@ -21,9 +21,11 @@ node_modules/
 # open-next cloudflare bundle
 .open-next/
 
-# legacy astro build output
-dist/
-.astro/
+# Astro era (rewritten to Next.js, kept gitignored as defensive)
+/dist/
+/.astro/
+
+# Cloudflare local state
 .wrangler
 .dev.vars*
 !.dev.vars.example
@@ -32,8 +34,10 @@ dist/
 # production
 /build
 
-# misc
+# OS scratch
 .DS_Store
+
+# misc
 *.pem
 
 # debug
@@ -46,8 +50,9 @@ pnpm-debug.log*
 # env files
 .env*
 
-# typescript
+# TypeScript build cache
 *.tsbuildinfo
+tsconfig.tsbuildinfo
 next-env.d.ts
 
 # editor + agent scratch
@@ -58,12 +63,20 @@ next-env.d.ts
 .playwright-mcp
 .idea/
 
-# content sync target (populated by pnpm sync-docs)
-content/docs/*
-!content/docs/meta.json
-!content/docs/guides
-!content/docs/guides/meta.json
-!content/docs/index.mdx
+# Synced from voicegateway/docs at build time (do not commit)
+/content/docs/api/
+/content/docs/architecture/
+/content/docs/guide/
+/content/docs/configuration/
+/content/docs/contributing/
+/content/docs/mcp/
+/content/docs/cli/
+/content/docs/storage/
+/content/docs/reference/
+/content/docs/examples/
+/content/docs/migration/
+/content/docs/changelog.mdx
+/content/docs/index.md
 
 # fumadocs generated
 .source/
@@ -78,4 +91,3 @@ v4-about.png
 
 # imported wireframe references (gitignored)
 references/
-

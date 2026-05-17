@@ -14,7 +14,6 @@ export function GET() {
       '> Public documentation for VoiceGateway, including setup, APIs, configuration, examples, architecture, and migration guides.',
       '',
       `- [Full Markdown corpus](${getCanonicalUrl('/llms-full.txt')})`,
-      `- [Markdown page endpoint](${getCanonicalUrl('/docs-md')})`,
       '',
       index.replace(/^# .+\n*/, ''),
     ].join('\n'),
